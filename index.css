@@ -1,1 +1,28 @@
-p {}
+ h1 {
+     color: rgb(12, 65, 209);
+ }
+
+
+ a:link {
+     text-decoration: none;
+     color: #d4b150;
+ }
+
+ a:visited {
+     text-decoration: none;
+     color: blueviolet;
+ }
+
+ a:hover {
+     text-decoration: underline;
+     color: #b32222;
+ }
+
+ a:active {
+     text-decoration: underline;
+     color: black;
+ }
+
+ p {
+     color: rgb(221, 153, 76)
+ }
