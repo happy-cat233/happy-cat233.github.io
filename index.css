@@ -1,5 +1,6 @@
  h1 {
      color: rgb(12, 65, 209);
+     text-align: center;
  }
 
 
@@ -24,5 +25,6 @@
  }
 
  p {
-     color: rgb(221, 153, 76)
+     color: rgb(221, 153, 76);
+     text-align: center;
  }
