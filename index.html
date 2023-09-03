@@ -17,9 +17,6 @@
 </head>
 
 <body>
-    <script>
-        window.alert("don't share this web!")
-    </script>
     <p style="text-align: center;color: brown;font-size: x-large;"><noscript>Sorry,javascript cannot run on your
             web brower.</noscript>
     </p>
@@ -35,17 +32,21 @@
         </audio>
     </p>
 -->
+    <p><button onclick="gift()" title="get it">a gift</button></p>
     <p>
         <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450
             src="https://music.163.com/outchain/player?type=4&id=791994372&auto=0&height=430">
         </iframe>
     </p>
-    <p><button onclick="displayResult()" title="get it">a gift</button></p>
-    <script>
-        function displayResult() {
-            document.getElementById("gift").innerHTML = "Have a nice day!"
-        }
-    </script>
+
+    <div>
+        <p id="hide"><button type="button" onclick="HideImage()">hide</button>
+        </p>
+        <p id="show"><button type="button" onclick="ShowImage()">show</button>
+        </p>
+        <p id="nyan-cat"><img src="nyan cat.png" alt="nyan cat by ☆⌒(*^-゜)v THX!!" title="nyan cat ☆⌒(*^-゜)v THX!!"></p>
+    </div>
+
     <br />
     <div>
         <p><a href="#top" title="go back to the top">go back to the top</a></p>
