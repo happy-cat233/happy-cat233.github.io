@@ -8,7 +8,7 @@
 
  a:link {
      text-decoration: none;
-     color: #d4b150;
+     color: #076426;
  }
 
  a:visited {
@@ -23,11 +23,56 @@
 
  a:active {
      text-decoration: underline;
-     color: black;
+     color: rgb(172, 29, 29);
  }
 
 
  p {
-     color: rgb(221, 153, 76);
+     color: rgb(31, 21, 71);
      text-align: center;
+     width: 1000px;
+     font-family: SimHei;
+ }
+
+ .leader {
+     background-color: rgb(240, 240, 213);
+     font-family: Microsoft JhengHei;
+     font-weight: bold;
+ }
+
+ li {
+     list-style-type: decimal;
+     font-family: Microsoft JhengHei;
+     font-weight: bold;
+ }
+
+ footer>p {
+     font-family: SimHei;
+     font-weight: bold;
+ }
+
+ input {
+     font-family: MicrosoftJhengHei;
+     font-weight: normal;
+ }
+
+
+ .aside {
+     text-align: right;
+     position: fixed;
+     right: 0;
+
+ }
+
+ .aside>ul {
+     background-color: rgb(223, 255, 244);
+     position: fixed;
+     right: 0;
+     top: 10;
+ }
+
+ .nav>form {
+     text-align: right;
+     position: fixed;
+     right: 0;
  }
