@@ -17,16 +17,17 @@
 </head>
 
 <body>
-    <header>
+    <header class="header" id="header">
         <!--全站标题-->
         <h1>happy-cat233's website</h1>
     </header>
     <nav class="nav">
+        <!-- 搜索栏是站点内导航的一个非线性的方式。 -->
         <form>
-            <!-- 搜索栏是站点内导航的一个非线性的方式。 -->
             <input type="search" name="q" placeholder="要搜索的内容" />
-            <input type="submit" value="搜索" />
+            <!--<input type="submit" value="搜索" />-->
         </form>
+
     </nav>
     <!-- 本站统一的导航栏 -->
     <ul class="leader">
@@ -39,10 +40,13 @@
             <!-- 侧边栏在主内容右侧 -->
             <h2>相关链接</h2>
             <ul>
-                <li><a href="#">暂无</a></li>
+                <li><a href="#header">返回顶部</a></li>
                 <!-- 侧边栏有 n 个超链接，略略略…… -->
             </ul>
         </aside>
+        <article>
+            <img src="/nyan cat.png" alt="nyan-cat" loading="lazy" />
+        </article>
         <article>
             <!-- 此处包含一个 article（一篇文章），内容略…… -->
             <p style="left: 0;">

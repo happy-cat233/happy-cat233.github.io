@@ -51,28 +51,32 @@
      font-weight: bold;
  }
 
- input {
+ .nav>input {
      font-family: MicrosoftJhengHei;
      font-weight: normal;
  }
 
 
  .aside {
+     background-color: rgb(197, 247, 218);
      text-align: right;
      position: fixed;
      right: 0;
 
  }
 
- .aside>ul {
-     background-color: rgb(223, 255, 244);
+ .aside>li {
+     background-color: rgb(197, 247, 218);
      position: fixed;
      right: 0;
      top: 10;
  }
 
  .nav>form {
-     text-align: right;
      position: fixed;
+     right: 0;
+ }
+
+ .nav {
      right: 0;
  }
