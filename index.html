@@ -1,59 +1,531 @@
 <!DOCTYPE html>
 
-<html lang="zh-Hans">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="happy-cat233's index web" />
-    <title>happy-cat233's web</title>
-    <script src="index.js"></script>
-    <!--<style type="text/css">
-        @import"index.css";
-    </style>-->
-    <link rel="stylesheet" type="text/css" href="index.css" />
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusicPlayer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&amp;family=Raleway:wght@300;400;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: linear-gradient(135deg, #2c1e1e 0%, #1a1212 100%);
+            color: #e9dcc9;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+        
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/old-map.png');
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 0;
+            position: relative;
+            margin-bottom: 50px;
+            animation: fadeInDown 1.5s ease-out;
+        }
+        
+        .ornament {
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            top: 100%;
+            background: url('https://www.transparenttextures.com/patterns/brushed-alum.png');
+            opacity: 0.3;
+        }
+        
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            background: linear-gradient(to right, #d4af37, #f9f3b6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 30%;
+            width: 40%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            margin-top: 20px;
+            font-weight: 300;
+            letter-spacing: 1px;
+            color: #c9b7a2;
+            animation: fadeIn 2s ease-out;
+        }
+        
+        .app-display {
+            display: flex;
+            gap: 50px;
+            margin: 80px 0;
+            align-items: center;
+            position: relative;
+        }
+        
+        .device-frame {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .phone {
+            background: linear-gradient(135deg, #111 0%, #333 100%);
+            border-radius: 50px;
+            padding: 20px;
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.8),
+                inset 0 0 10px rgba(212, 175, 55, 0.2);
+            border: 3px solid #3a2b17;
+            position: relative;
+        }
+        
+        .phone::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 20px;
+            background: #1a1a1a;
+            border-radius: 10px;
+            z-index: 10;
+        }
+        
+        .screen {
+            background: linear-gradient(45deg, #1a120b 0%, #2c1e13 100%);
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
+            height: 600px;
+            border: 1px solid #4a3a2a;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+        }
+        
+        .screen-content {
+            padding: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .app-logo {
+            text-align: center;
+            margin: 20px 0 40px;
+            animation: pulse 3s infinite;
+        }
+        
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #d4af37 0%, #f9f3b6 100%);
+            border-radius: 22px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            border: 2px solid #b69b4c;
+        }
+        
+        .app-icon i {
+            font-size: 50px;
+            color: #1a120b;
+        }
+        
+        .screen h3 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #e9dcc9;
+        }
+        
+        .screen p {
+            font-size: 1.1rem;
+            text-align: center;
+            color: #b8a98f;
+            margin-bottom: 30px;
+        }
+        
+        .features {
+            margin-top: 30px;
+        }
+        
+        .features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .features li i {
+            color: #d4af37;
+            margin-right: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .app-info {
+            flex: 1;
+            position: relative;
+            padding: 30px;
+            border-left: 2px solid rgba(212, 175, 55, 0.3);
+            animation: fadeInRight 1.5s ease-out;
+        }
+        
+        .app-info::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #d4af37;
+            box-shadow: 0 0 10px #d4af37;
+        }
+        
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: #d4af37;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 150px;
+            height: 2px;
+            background: linear-gradient(90deg, #d4af37, transparent);
+        }
+        
+        .app-info p {
+            font-size: 1.25rem;
+            margin-bottom: 30px;
+            color: #c9b7a2;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            color: #f9f3b6;
+            font-weight: 600;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-family: 'Cinzel', serif;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: 2px solid transparent;
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37 0%, #b69b4c 100%);
+            color: #1a120b;
+            font-weight: bold;
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #d4af37;
+            border: 2px solid #d4af37;
+        }
+        
+        .btn::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .download-stats {
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-around;
+            max-width: 600px;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        .stat {
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .stat-number {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            color: #d4af37;
+            margin-bottom: 5px;
+            position: relative;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            color: #b8a98f;
+            letter-spacing: 1px;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 30px 0;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            color: #8a7a61;
+            font-size: 1rem;
+        }
+        
+        /* Animations */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        .scroll-animation {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .scroll-animation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .app-display {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .app-info {
+                border-left: none;
+                border-top: 2px solid rgba(212, 175, 55, 0.3);
+                padding-top: 50px;
+                margin-top: 40px;
+            }
+            
+            .app-info::before {
+                top: -6px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            h1 {
+                font-size: 3.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-    <p style="text-align: center;color: brown;font-size: x-large;"><noscript>Sorry,javascript cannot run on your
-            web brower.</noscript>
-    </p>
-
-    <h1><a id="top" style="text-align: center;">Welcome!</a></h1>
-    <!--<p>This is my first web</p>
-        <p>This is my gift</p>-->
-    <p>Click to play</p>
-    <p><a href="/new-index.html">new</a></p>
-    <p id="gift"></p>
-    <!--<p>
-        <audio controls="controls" controlsList="nodownload" oncontextmenu="return false">
-            <source src="4real4real.mp3" type="audio/mp3">
-        </audio>
-    </p>
--->
-    <p><button onclick="gift()" title="get it">a gift</button></p>
-    <p>
-        <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=450
-            src="https://music.163.com/outchain/player?type=4&id=791994372&auto=0&height=430">
-        </iframe>
-    </p>
-
-    <div>
-        <p id="hide"><button type="button" onclick="HideImage()">hide</button>
-        </p>
-        <p id="show"><button type="button" onclick="ShowImage()">show</button>
-        </p>
-        <p id="nyan-cat"><img src="nyan cat.png" alt="nyan cat by ☆⌒(*^-゜)v THX!!" title="nyan cat ☆⌒(*^-゜)v THX!!"></p>
+    <div class="container">
+        <header>
+            <h1>音乐播放器</h1>
+            <div class="subtitle">在数字时代体验远古播放模式</div>
+            <div class="ornament"></div>
+        </header>
+        
+        <main>
+            <div class="app-display">
+                <div class="device-frame scroll-animation visible">
+                    <div class="phone">
+                        <div class="screen">
+                            <div class="screen-content">
+                                
+                                <h3>音乐播放器</h3>
+                                <p>支持WAV FLAC MP3 M4A等格式</p>
+                                
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-info scroll-animation visible">
+                    <h2>音乐播放器</h2>
+                    
+                    
+                    
+                    
+                    <p>最新版V9.0</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="https://github.com/happy-cat233/happy-cat233.github.io/releases/download/MusicPlayer/MusicPlayer.exe" class="btn btn-primary">
+                            <i class="fab fa-windows"></i>DOWNLOAD</a>
+                        
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2025 MusicPlayer</p>
+            <p>版本: 9.0</p>
+        </footer>
     </div>
 
-    <br />
-    <div>
-        <p><a href="#top" title="go back to the top">go back to the top</a></p>
-        <p><a href="https://happy-cat233.github.io/" title="refresh the page">refresh the page</a></p>
-    </div>
+    <script>
+        // 滚动动画效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollElements = document.querySelectorAll('.scroll-animation');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            scrollElements.forEach(el => {
+                observer.observe(el);
+            });
+        });
+    </script>
 
-</body>
-
-</html>
+</body></html>
